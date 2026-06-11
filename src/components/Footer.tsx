@@ -7,15 +7,14 @@ export function Footer() {
     <footer className="bg-[#0a0a0a] border-t border-[#2a2a2d]">
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand Column */}
           <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-2">
               <span className="text-lg font-bold bg-gradient-to-r from-[#0a84ff] to-[#00c6ff] bg-clip-text text-transparent">
-                PDFCraft
+                CraftKit Pro
               </span>
             </Link>
             <p className="text-[13px] text-[#8e8e93] leading-relaxed">
-              Professional, browser-based tools to edit, annotate, merge, and optimize your PDF documents with absolute privacy.
+              Professional, browser-based tools to edit, annotate, merge, and optimize your media assets with absolute privacy.
             </p>
           </div>
 
@@ -98,7 +97,7 @@ export function Footer() {
 
         <div className="border-t border-[#2a2a2d] mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[12px] text-[#48484a]">
-            &copy; {currentYear} PDFCraft. All rights reserved.
+            &copy; {currentYear} CraftKit Pro. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link

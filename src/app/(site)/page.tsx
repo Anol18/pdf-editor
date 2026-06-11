@@ -1,237 +1,412 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { 
+  Sparkles, 
+  FileText, 
+  Image as ImageIcon, 
+  Video, 
+  Music, 
+  ArrowRight, 
+  ShieldCheck, 
+  Zap, 
+  HardDrive, 
+  Edit3, 
+  Merge, 
+  Eraser, 
+  Ruler, 
+  Maximize,
+  ArrowUpRight,
+  Check,
+  X,
+  Lock,
+  Globe,
+  EyeOff
+} from "lucide-react";
+import { InteractiveSandbox } from "@/components/landing/InteractiveSandbox";
+import { FaqSection } from "@/components/landing/FaqSection";
 
 export const metadata: Metadata = {
-  title: "PDFCraft Pro — Free Online browser-based PDF Editor & Merger",
+  title: "CraftKit Pro — Free Online PDF Editor, Image Studio & Media Toolkit",
   description:
-    "Edit, annotate, whiteout, draw, and merge PDFs completely in your browser. Private, secure, fast, and 100% local processing. No files are uploaded to servers.",
+    "Edit, compress, merge PDFs and batch process, resize, crop, remove backgrounds, or upscale images in your browser. 100% private, local processing. No sign-up.",
   keywords: [
     "pdf editor",
+    "image converter",
+    "compress image",
+    "remove background",
+    "upscale image",
     "merge pdf",
-    "online pdf editor",
+    "online media tools",
+    "local file editor",
     "free pdf editor",
-    "annotate pdf",
-    "pdf whiteout",
-    "pdf redaction",
-    "local pdf processing",
-    "secure pdf editor",
+    "crop image online",
+    "watermark images",
+    "privacy-first tools"
   ],
   openGraph: {
-    title: "PDFCraft Pro — Free Online browser-based PDF Editor & Merger",
+    title: "CraftKit Pro — Free Online PDF Editor, Image Studio & Media Toolkit",
     description:
-      "Edit, annotate, whiteout, draw, and merge PDFs completely in your browser. Private, secure, and fast.",
+      "Your all-in-one privacy-first browser toolkit. Edit PDFs, convert & resize images, upscale, and remove backgrounds 100% client-side.",
     type: "website",
   },
 };
 
 export default function LandingPage() {
-  const tools = [
-    {
-      title: "PDF Editor & Annotator",
-      description: "Directly insert and edit text, modify font size, family, colors, and styles in place.",
-      icon: "✍️",
-      link: "/pdf-editor",
-    },
-    {
-      title: "PDF Merger & Page Manager",
-      description: "Upload multiple PDFs to merge them into one. Reorder, duplicate, rotate, or delete pages easily.",
-      icon: "🔀",
-      link: "/pdf-editor",
-    },
-    {
-      title: "Redact & Whiteout",
-      description: "Apply secure background masks (whiteout) over existing PDF elements to cover sensitive text.",
-      icon: "⬜",
-      link: "/pdf-editor",
-    },
-    {
-      title: "Draw & Markup",
-      description: "Use the freehand pencil or highlighter to underline, circle, or annotate directly on the pages.",
-      icon: "✏️",
-      link: "/pdf-editor",
-    },
+  const pdfTools = [
+    { name: "Annotate & Edit", desc: "Modify text, styles, fonts, and colors directly.", icon: Edit3 },
+    { name: "Merge & Organize", desc: "Combine multiple PDFs and reorder, rotate, or delete pages.", icon: Merge },
+    { name: "Redact & Whiteout", desc: "Conceal sensitive content using secure whiteout masking.", icon: EyeOff },
   ];
+
+  const imageTools = [
+    { name: "Convert & Compress", desc: "Batch transform formats and shrink image file sizes.", icon: Ruler },
+    { name: "AI BG Remover", desc: "Locally extract subjects to make backgrounds transparent.", icon: Eraser },
+    { name: "AI Upscaling", desc: "Enhance resolution up to 4x using interpolation models.", icon: Maximize },
+  ];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CraftKit Pro",
+    "url": "https://craftkit.pro",
+    "description": "Your all-in-one privacy-first browser toolkit. Edit PDFs, convert & resize images, upscale, and remove backgrounds 100% client-side.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires HTML5, WebAssembly, WebGL",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "PDF editing and annotation",
+      "PDF merging and organization",
+      "Batch image compression and resizing",
+      "AI background removal",
+      "AI image upscaling"
+    ],
+    "mainEntity": {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are my files uploaded to any servers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, never. CraftKit Pro operates 100% client-side. The tools leverage WebAssembly, HTML5 APIs, and WebGPU/WebGL to process your PDF documents and images locally directly inside your browser. No files, logs, or metadata are ever transmitted or stored on any server."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is it completely free and uncapped?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Since all file processing runs on your local computer's processor (CPU/GPU) instead of our servers, we don't have to pay massive cloud computing bills. This allows us to keep the entire toolkit completely free, with no paywalls, subscriptions, watermark stamps, or file count limits."
+          }
+        }
+      ]
+    }
+  };
 
   return (
     <div className="relative overflow-hidden bg-[#0a0a0a] min-h-screen flex flex-col justify-center">
-      {/* Background Gradients */}
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {/* Premium Glassmorphic Glows */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#0a84ff]/10 blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#00c6ff]/10 blur-[150px]" />
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#0a84ff]/10 blur-[130px]" />
+        <div className="absolute top-[30%] right-[-15%] w-[50%] h-[50%] rounded-full bg-[#00c6ff]/10 blur-[160px]" />
+        <div className="absolute bottom-[-10%] left-[10%] w-[50%] h-[50%] rounded-full bg-[#00f0ff]/5 blur-[140px]" />
+        {/* Subtle grid pattern background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f1f23_1px,transparent_1px),linear-gradient(to_bottom,#1f1f23_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30" />
       </div>
 
-      {/* Hero Section */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 pt-20 pb-16 sm:px-6 lg:px-8 text-center">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold bg-[#0a84ff]/10 text-[#0a84ff] border border-[#0a84ff]/20 rounded-full mb-6">
-          ✨ 100% Client-Side & Secure
+      {/* Hero Headline Section */}
+      <header className="relative z-10 max-w-7xl mx-auto px-4 pt-28 pb-12 sm:px-6 lg:px-8 text-center">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold bg-[#0a84ff]/10 text-[#0a84ff] border border-[#0a84ff]/20 rounded-full mb-6 select-none">
+          <Sparkles size={12} className="text-[#0a84ff] animate-pulse" /> 100% Browser-Based & Secure
         </span>
-        <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight max-w-4xl mx-auto">
-          Craft & Edit Your PDFs with{" "}
+        <h1 className="text-4xl sm:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight max-w-5xl mx-auto">
+          Craft & Optimize Your Media with{" "}
           <span className="bg-gradient-to-r from-[#0a84ff] via-[#00c6ff] to-[#00f0ff] bg-clip-text text-transparent">
-            Ultimate Control
+            Absolute Privacy
           </span>
         </h1>
-        <p className="text-lg sm:text-xl text-[#8e8e93] max-w-2xl mx-auto mb-10 leading-relaxed">
-          The professional-grade, browser-based editor that lets you edit text, annotate, merge, and optimize PDFs completely locally. No sign-up, no server uploads, absolute privacy.
+        <p className="text-base sm:text-xl text-[#8e8e93] max-w-3xl mx-auto mb-10 leading-relaxed">
+          The professional-grade client-side suite. Process your documents and images completely locally inside your browser. No files are uploaded to servers, no registration required, 100% free.
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
           <Link
             href="/pdf-editor"
-            className="w-full sm:w-auto px-8 py-4 text-base font-bold text-white bg-[#0a84ff] hover:bg-[#0070e3] active:scale-95 rounded-xl transition-all shadow-lg shadow-[#0a84ff]/30 text-center"
+            className="w-full sm:w-auto px-8 py-4 text-base font-bold text-white bg-[#0a84ff] hover:bg-[#0070e3] active:scale-95 rounded-xl transition-all shadow-lg shadow-[#0a84ff]/20 text-center flex items-center justify-center gap-2 group"
           >
-            Launch Free Editor
+            Launch PDF Studio
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link
-            href="#tools"
-            className="w-full sm:w-auto px-8 py-4 text-base font-bold text-[#ebebf5] bg-[#1c1c1e] hover:bg-[#2c2c2e] border border-[#2a2a2d] active:scale-95 rounded-xl transition-all text-center"
+            href="/image-tools"
+            className="w-full sm:w-auto px-8 py-4 text-base font-bold text-[#ebebf5] bg-[#1c1c1e] hover:bg-[#2c2c2e] border border-[#2a2a2d] active:scale-95 rounded-xl transition-all text-center flex items-center justify-center gap-2"
           >
-            Explore Tools
+            Launch Image Studio
+            <ArrowUpRight size={18} />
           </Link>
         </div>
+      </header>
+
+      {/* Interactive Local Processor Sandbox (Try-It Section) */}
+      <section className="relative z-10 py-12 px-4 sm:px-6 lg:px-8">
+        <InteractiveSandbox />
       </section>
 
-      {/* Trust & Security Highlight */}
-      <section className="relative z-10 border-y border-[#2a2a2d] bg-[#111112]/50 backdrop-blur-sm py-10">
+      {/* Privacy & Engine Highlights */}
+      <section className="relative z-10 border-y border-[#2a2a2d] bg-[#111112]/40 backdrop-blur-md py-12 my-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-            <div className="flex flex-col gap-2">
-              <span className="text-xl">🔒</span>
-              <h3 className="text-sm font-semibold text-white">Absolute Privacy</h3>
-              <p className="text-[13px] text-[#8e8e93]">
-                Your documents never touch our servers. All processing and exporting happen directly inside your web browser.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex items-start gap-4">
+              <div className="p-3 bg-[#1c1c1e] border border-[#2a2a2d] rounded-2xl text-[#0a84ff] shadow-inner">
+                <ShieldCheck size={24} />
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-[16px] font-bold text-white">Zero File Uploads</h3>
+                <p className="text-xs sm:text-sm text-[#8e8e93] leading-relaxed">
+                  WebAssembly & HTML5 scripts process your data locally. Your sensitive files never leave your computer.
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <span className="text-xl">⚡</span>
-              <h3 className="text-sm font-semibold text-white">Lightning Fast</h3>
-              <p className="text-[13px] text-[#8e8e93]">
-                Zero upload or download queues. Instant rendering, scaling, and edits powered by hardware-accelerated canvas.
-              </p>
+            <div className="flex items-start gap-4">
+              <div className="p-3 bg-[#1c1c1e] border border-[#2a2a2d] rounded-2xl text-[#00c6ff] shadow-inner">
+                <Zap size={24} />
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-[16px] font-bold text-white">Instant Rendering</h3>
+                <p className="text-xs sm:text-sm text-[#8e8e93] leading-relaxed">
+                  Direct hardware-accelerated processing means zero upload queues, zero wait times, and lightning-fast exports.
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <span className="text-xl">🆓</span>
-              <h3 className="text-sm font-semibold text-white">No Limits, Free</h3>
-              <p className="text-[13px] text-[#8e8e93]">
-                Edit, compress, and export without watermarks, daily limits, or paid upgrades. The full toolset is yours.
-              </p>
+            <div className="flex items-start gap-4">
+              <div className="p-3 bg-[#1c1c1e] border border-[#2a2a2d] rounded-2xl text-[#00f0ff] shadow-inner">
+                <HardDrive size={24} />
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-[16px] font-bold text-white">100% Free & Uncapped</h3>
+                <p className="text-xs sm:text-sm text-[#8e8e93] leading-relaxed">
+                  No subscriptions, paywalls, watermark stamps, or daily constraints. The complete professional suite is yours.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Tools Section */}
-      <section id="tools" className="relative z-10 max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Everything You Need Under One Tool
+      {/* Main Studio Portals Grid */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8 space-y-16">
+        <div className="text-center space-y-3">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Explore Creative Studios
           </h2>
-          <p className="text-[#8e8e93] max-w-2xl mx-auto text-[15px]">
-            Discover premium functionalities tailored for creators, developers, and professionals.
+          <p className="text-[#8e8e93] max-w-2xl mx-auto text-[15px] sm:text-base">
+            Choose a specialized studio suite to begin crafting your digital assets.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {tools.map((tool, index) => (
-            <Link
-              key={index}
-              href={tool.link}
-              className="group flex flex-col p-6 rounded-2xl bg-[#111112] border border-[#2a2a2d] hover:border-[#0a84ff]/50 hover:bg-[#151517] transition-all duration-300"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <span className="text-3xl bg-[#1c1c1e] p-2.5 rounded-xl group-hover:bg-[#0a84ff]/10 group-hover:scale-110 transition-all">
-                  {tool.icon}
-                </span>
-                <h3 className="text-lg font-bold text-white group-hover:text-[#0a84ff] transition-colors">
-                  {tool.title}
-                </h3>
-              </div>
-              <p className="text-[14px] text-[#8e8e93] leading-relaxed group-hover:text-[#ebebf5] transition-colors">
-                {tool.description}
-              </p>
-              <span className="mt-4 text-[12px] font-semibold text-[#0a84ff] flex items-center gap-1 group-hover:translate-x-1.5 transition-transform">
-                Launch tool <span>→</span>
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Feature Walkthrough */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 border-t border-[#2a2a2d]">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold text-white mb-6 leading-snug">
-              Intuitive Interface Designed for Perfect Precision
-            </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* PDF Craft Studio Portal */}
+          <div className="group relative rounded-3xl border border-[#2a2a2d] bg-[#111112]/90 hover:border-[#0a84ff]/60 hover:bg-[#141416]/95 p-8 flex flex-col justify-between transition-all duration-300 shadow-lg">
             <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#0a84ff]/10 border border-[#0a84ff]/20 text-[#0a84ff] flex items-center justify-center font-bold text-sm">
-                  1
+              <div className="flex items-center justify-between">
+                <div className="p-4 bg-[#0a84ff]/10 border border-[#0a84ff]/20 rounded-2xl text-[#0a84ff] group-hover:scale-110 transition-transform">
+                  <FileText size={32} />
                 </div>
-                <div>
-                  <h4 className="text-white font-semibold mb-1">Drag and Drop Upload</h4>
-                  <p className="text-xs text-[#8e8e93]">Quickly throw any PDF into the dropzone. It renders instantly.</p>
-                </div>
+                <span className="px-3 py-1 text-[10px] font-bold text-[#0a84ff] bg-[#0a84ff]/10 border border-[#0a84ff]/20 rounded-full uppercase tracking-wider">
+                  PDF Suite
+                </span>
               </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#0a84ff]/10 border border-[#0a84ff]/20 text-[#0a84ff] flex items-center justify-center font-bold text-sm">
-                  2
-                </div>
-                <div>
-                  <h4 className="text-white font-semibold mb-1">Add, Modify, and Align Elements</h4>
-                  <p className="text-xs text-[#8e8e93]">Insert shapes, highlights, text, or draw directly. Use the properties panel to tweak colors, widths, opacity, and layering.</p>
-                </div>
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold text-white group-hover:text-[#0a84ff] transition-colors">
+                  PDF Craft Studio
+                </h3>
+                <p className="text-sm text-[#8e8e93] leading-relaxed">
+                  An advanced browser-based PDF compiler and annotator. Edit text in-place, manage layout pagination, and markup pages locally.
+                </p>
               </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#0a84ff]/10 border border-[#0a84ff]/20 text-[#0a84ff] flex items-center justify-center font-bold text-sm">
-                  3
-                </div>
-                <div>
-                  <h4 className="text-white font-semibold mb-1">Export Compressed PDF</h4>
-                  <p className="text-xs text-[#8e8e93]">Select between Low, Medium, and High compression profiles to export files perfectly sized for email attachments.</p>
-                </div>
+              <div className="pt-4 border-t border-[#2a2a2d] space-y-3">
+                {pdfTools.map((t, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <t.icon size={16} className="text-[#0a84ff]" />
+                    <span className="text-[13px] text-[#ebebf5] font-semibold">{t.name}</span>
+                    <span className="text-[11px] text-[#8e8e93]">— {t.desc}</span>
+                  </div>
+                ))}
               </div>
             </div>
             <Link
               href="/pdf-editor"
-              className="inline-block mt-8 px-6 py-3 text-[14px] font-bold text-white bg-[#0a84ff] hover:bg-[#0070e3] rounded-lg transition-colors"
+              className="mt-8 py-4 px-6 flex items-center justify-center gap-2 rounded-xl text-[14px] font-bold text-white bg-[#0a84ff] hover:bg-[#0070e3] shadow-lg shadow-[#0a84ff]/10 transition-all active:scale-98"
             >
-              Get Started Now
+              Enter PDF Studio <ArrowRight size={16} />
             </Link>
           </div>
-          <div className="relative rounded-2xl overflow-hidden border border-[#2a2a2d] bg-[#111112] p-4 aspect-video flex items-center justify-center">
-            {/* Visual Representation of Editor UI */}
-            <div className="w-full h-full border border-[#2a2a2d] rounded-lg bg-[#0a0a0a] flex flex-col overflow-hidden">
-              <div className="h-8 border-b border-[#2a2a2d] bg-[#111112] flex items-center px-3 gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                <div className="ml-4 text-[10px] text-[#48484a]">pdfcraft-pro-editor.local</div>
-              </div>
-              <div className="flex-1 flex bg-[#141416]">
-                <div className="w-16 border-r border-[#2a2a2d] bg-[#1c1c1e] flex flex-col gap-2 p-2">
-                  <div className="h-6 w-full rounded bg-[#2c2c2e]" />
-                  <div className="h-6 w-full rounded bg-[#0a84ff]" />
-                  <div className="h-6 w-full rounded bg-[#2c2c2e]" />
+
+          {/* Image Craft Studio Portal */}
+          <div className="group relative rounded-3xl border border-[#2a2a2d] bg-[#111112]/90 hover:border-[#00c6ff]/60 hover:bg-[#141416]/95 p-8 flex flex-col justify-between transition-all duration-300 shadow-lg">
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div className="p-4 bg-[#00c6ff]/10 border border-[#00c6ff]/20 rounded-2xl text-[#00c6ff] group-hover:scale-110 transition-transform">
+                  <ImageIcon size={32} />
                 </div>
-                <div className="flex-1 p-4 flex justify-center items-center">
-                  <div className="w-[120px] h-[160px] bg-white rounded shadow-xl flex flex-col p-3 gap-2">
-                    <div className="h-2 w-1/2 bg-gray-200 rounded" />
-                    <div className="h-2 w-3/4 bg-gray-200 rounded" />
-                    <div className="h-6 w-full border border-dashed border-[#0a84ff] flex items-center justify-center">
-                      <span className="text-[6px] text-[#0a84ff]">Text Element</span>
-                    </div>
+                <span className="px-3 py-1 text-[10px] font-bold text-[#00c6ff] bg-[#00c6ff]/10 border border-[#00c6ff]/20 rounded-full uppercase tracking-wider">
+                  Image Suite
+                </span>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold text-white group-hover:text-[#00c6ff] transition-colors">
+                  Image Studio
+                </h3>
+                <p className="text-sm text-[#8e8e93] leading-relaxed">
+                  A high-performance batch image processor. Compress, resize, crop, watermark, run client-side transparent AI background isolation, and upscale.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-[#2a2a2d] space-y-3">
+                {imageTools.map((t, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <t.icon size={16} className="text-[#00c6ff]" />
+                    <span className="text-[13px] text-[#ebebf5] font-semibold">{t.name}</span>
+                    <span className="text-[11px] text-[#8e8e93]">— {t.desc}</span>
                   </div>
-                </div>
-                <div className="w-24 border-l border-[#2a2a2d] bg-[#1c1c1e] p-2 gap-2 flex flex-col">
-                  <div className="h-2 w-1/2 bg-gray-600 rounded" />
-                  <div className="h-4 w-full bg-[#2c2c2e] rounded" />
-                  <div className="h-4 w-full bg-[#2c2c2e] rounded" />
-                </div>
+                ))}
               </div>
+            </div>
+            <Link
+              href="/image-tools"
+              className="mt-8 py-4 px-6 flex items-center justify-center gap-2 rounded-xl text-[14px] font-bold text-white bg-[#00c6ff] hover:bg-[#00b2e6] shadow-lg shadow-[#00c6ff]/10 transition-all active:scale-98"
+            >
+              Enter Image Studio <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Local Processing vs Cloud Comparison Section */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8 space-y-12">
+        <div className="text-center space-y-3">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            How Local Processing Compares
+          </h2>
+          <p className="text-[#8e8e93] max-w-2xl mx-auto text-sm sm:text-[15px]">
+            Why shifting computing tasks to the browser's local sandbox changes everything.
+          </p>
+        </div>
+
+        <div className="w-full overflow-x-auto rounded-2xl border border-[#2a2a2d] bg-[#111112]/40 backdrop-blur-md">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="border-b border-[#2a2a2d] bg-[#1c1c1e]/50">
+                <th className="p-4 sm:p-5 text-xs sm:text-sm font-extrabold text-white">Feature comparison</th>
+                <th className="p-4 sm:p-5 text-xs sm:text-sm font-extrabold text-[#0a84ff] flex items-center gap-1.5">
+                  <Lock size={14} /> CraftKit Pro (Local)
+                </th>
+                <th className="p-4 sm:p-5 text-xs sm:text-sm font-extrabold text-[#8e8e93] table-cell">
+                  <Globe size={14} className="inline mr-1" /> Cloud-based Tools
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#2a2a2d]/50 text-xs sm:text-sm">
+              <tr>
+                <td className="p-4 sm:p-5 font-bold text-white">Privacy & Protection</td>
+                <td className="p-4 sm:p-5 text-[#30d158] font-semibold flex items-center gap-1">
+                  <Check size={16} /> 100% Private (No uploads)
+                </td>
+                <td className="p-4 sm:p-5 text-[#ff453a] font-semibold table-cell">
+                  <X size={16} className="inline mr-1" /> Risk of server breaches
+                </td>
+              </tr>
+              <tr>
+                <td className="p-4 sm:p-5 font-bold text-white">Upload & Render Speed</td>
+                <td className="p-4 sm:p-5 text-[#30d158] font-semibold">
+                  <Check size={16} className="inline mr-1" /> Instant local rendering
+                </td>
+                <td className="p-4 sm:p-5 text-[#ff453a] font-semibold table-cell">
+                  <X size={16} className="inline mr-1" /> Network-bandwidth bottleneck
+                </td>
+              </tr>
+              <tr>
+                <td className="p-4 sm:p-5 font-bold text-white">Subscription Costs</td>
+                <td className="p-4 sm:p-5 text-[#30d158] font-semibold">
+                  <Check size={16} className="inline mr-1" /> 100% Free & Unlimited
+                </td>
+                <td className="p-4 sm:p-5 text-[#ff453a] font-semibold table-cell">
+                  <X size={16} className="inline mr-1" /> Heavy monthly fees
+                </td>
+              </tr>
+              <tr>
+                <td className="p-4 sm:p-5 font-bold text-white">Export Stamps / Watermarks</td>
+                <td className="p-4 sm:p-5 text-[#30d158] font-semibold">
+                  <Check size={16} className="inline mr-1" /> Zero watermarks
+                </td>
+                <td className="p-4 sm:p-5 text-[#ff453a] font-semibold table-cell">
+                  <X size={16} className="inline mr-1" /> Watermarks on free plans
+                </td>
+              </tr>
+              <tr>
+                <td className="p-4 sm:p-5 font-bold text-white">Offline Capability</td>
+                <td className="p-4 sm:p-5 text-[#30d158] font-semibold">
+                  <Check size={16} className="inline mr-1" /> Works offline entirely
+                </td>
+                <td className="p-4 sm:p-5 text-[#ff453a] font-semibold table-cell">
+                  <X size={16} className="inline mr-1" /> Fails completely offline
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* Dynamic Roadmapped/Future Studios Teaser Grid */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 space-y-6">
+        <div className="border-t border-[#2a2a2d] pt-16 text-center space-y-2">
+          <h3 className="text-xl font-bold text-white">Upcoming Free Platforms</h3>
+          <p className="text-xs sm:text-sm text-[#8e8e93]">
+            We are continuously building new local processors to expand your workspace toolkit.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="p-6 bg-[#111112]/30 border border-[#2a2a2d]/50 rounded-2xl flex items-center gap-4 opacity-70 hover:opacity-100 transition-opacity">
+            <div className="p-3 bg-[#1c1c1e] rounded-xl text-[#8e8e93]">
+              <Video size={24} />
+            </div>
+            <div>
+              <h4 className="text-[15px] font-bold text-white">Video Craft Studio</h4>
+              <p className="text-xs text-[#8e8e93]">Client-side FFmpeg MP4 trim, conversion, and optimization.</p>
+            </div>
+          </div>
+          <div className="p-6 bg-[#111112]/30 border border-[#2a2a2d]/50 rounded-2xl flex items-center gap-4 opacity-70 hover:opacity-100 transition-opacity">
+            <div className="p-3 bg-[#1c1c1e] rounded-xl text-[#8e8e93]">
+              <Music size={24} />
+            </div>
+            <div>
+              <h4 className="text-[15px] font-bold text-white">Audio Craft Studio</h4>
+              <p className="text-xs text-[#8e8e93]">Local WAV/MP3 compression, splicing, and formatting.</p>
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Interactive FAQ Section */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8 space-y-12">
+        <div className="text-center space-y-3">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-[#8e8e93] max-w-2xl mx-auto text-sm sm:text-[15px]">
+            Have questions about security, features, or restrictions? We have answers.
+          </p>
+        </div>
+        <FaqSection />
       </section>
     </div>
   );

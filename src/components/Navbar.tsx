@@ -10,6 +10,8 @@ export function Navbar() {
 
   const navItems = [
     { name: "Home", path: "/" },
+    { name: "PDF Editor", path: "/pdf-editor" },
+    { name: "Image Studio", path: "/image-tools" },
     { name: "Blog", path: "/blog" },
     { name: "About Me", path: "/about" },
     { name: "Contact", path: "/contact" },
@@ -23,7 +25,7 @@ export function Navbar() {
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center gap-2 group">
               <span className="text-xl font-bold bg-gradient-to-r from-[#0a84ff] to-[#00c6ff] bg-clip-text text-transparent group-hover:opacity-80 transition-opacity">
-                PDFCraft
+                CraftKit
               </span>
               <span className="px-2 py-0.5 text-[10px] font-medium bg-[#0a84ff]/10 text-[#0a84ff] border border-[#0a84ff]/20 rounded-full">
                 Pro
@@ -55,7 +57,7 @@ export function Navbar() {
               href="/pdf-editor"
               className="px-4 py-2 text-[13px] font-semibold text-white bg-[#0a84ff] hover:bg-[#0070e3] active:scale-95 rounded-lg transition-all shadow-md shadow-[#0a84ff]/20"
             >
-              Open PDF Editor
+              Get Started
             </Link>
           </div>
 
@@ -121,7 +123,7 @@ export function Navbar() {
                 onClick={() => setIsOpen(false)}
                 className="block w-full text-center px-4 py-2.5 text-sm font-semibold text-white bg-[#0a84ff] hover:bg-[#0070e3] rounded-lg transition-colors"
               >
-                Open PDF Editor
+                Get Started
               </Link>
             </div>
           </div>

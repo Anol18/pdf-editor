@@ -9,16 +9,24 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@huggingface/transformers": "^4.2.0",
+    "@types/jszip": "^3.4.1",
+    "exiftool-vendored": "^36.0.0",
+    "heic-convert": "^2.1.0",
     "immer": "^11.1.8",
+    "jszip": "^3.10.1",
     "konva": "^10.3.0",
     "lucide-react": "^1.17.0",
+    "luxon": "^3.7.2",
     "nanoid": "^5.1.11",
     "next": "16.2.7",
+    "onnxruntime-web": "^1.21.0",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^6.0.227",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-konva": "^19.2.4",
+    "sharp": "^0.32.6",
     "zustand": "^5.0.14"
   },
   "devDependencies": {
