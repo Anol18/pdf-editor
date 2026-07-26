@@ -24,30 +24,32 @@ import {
 } from "lucide-react";
 import { InteractiveSandbox } from "@/components/landing/InteractiveSandbox";
 import { FaqSection } from "@/components/landing/FaqSection";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "CraftKit Pro — Free Online PDF Editor, Image Studio & Media Toolkit",
   description:
     "Edit, compress, merge PDFs and batch process, resize, crop, remove backgrounds, or upscale images in your browser. 100% private, local processing. No sign-up.",
-  keywords: [
-    "pdf editor",
-    "image converter",
-    "compress image",
-    "remove background",
-    "upscale image",
-    "merge pdf",
-    "online media tools",
-    "local file editor",
-    "free pdf editor",
-    "crop image online",
-    "watermark images",
-    "privacy-first tools"
-  ],
+  keywords: siteConfig.keywords,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "CraftKit Pro — Free Online PDF Editor, Image Studio & Media Toolkit",
     description:
       "Your all-in-one privacy-first browser toolkit. Edit PDFs, convert & resize images, upscale, and remove backgrounds 100% client-side.",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    images: ["/opengraph-image"],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CraftKit Pro — Free Online PDF Editor, Image Studio & Media Toolkit",
+    description:
+      "Your all-in-one privacy-first browser toolkit. Edit PDFs, convert & resize images, upscale, and remove backgrounds 100% client-side.",
+    images: ["/opengraph-image"],
   },
 };
 
@@ -68,10 +70,10 @@ export default function LandingPage() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "CraftKit Pro",
-    "url": "https://craftkit.pro",
+    "url": siteConfig.url,
     "description": "Your all-in-one privacy-first browser toolkit. Edit PDFs, convert & resize images, upscale, and remove backgrounds 100% client-side.",
     "applicationCategory": "MultimediaApplication",
-    "operatingSystem": "All",
+    "operatingSystem": "All modern web browsers",
     "browserRequirements": "Requires HTML5, WebAssembly, WebGL",
     "offers": {
       "@type": "Offer",
@@ -111,10 +113,7 @@ export default function LandingPage() {
   return (
     <div className="relative overflow-hidden bg-[#0a0a0a] min-h-screen flex flex-col justify-center">
       {/* JSON-LD Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
 
       {/* Premium Glassmorphic Glows */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">

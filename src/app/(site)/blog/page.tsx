@@ -1,17 +1,40 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { siteConfig } from "@/config/site";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getBreadcrumbSchema } from "@/lib/seo-schemas";
 
 export const metadata: Metadata = {
-  title: "Blog & Guide — Learn PDF Edits, Security & Optimization | PDFCraft Pro",
+  title: "Blog & Guides — PDF Editing, Media Security & Local Web Tech",
   description:
-    "Discover the latest tutorials, security guidelines, and step-by-step guides on editing, merging, and compressing PDFs safely in the browser.",
+    "Discover the latest tutorials, security guidelines, and step-by-step guides on editing, merging, and compressing PDFs safely in your browser.",
   keywords: [
     "pdf guides",
     "how to edit pdf text",
     "secure pdf merging",
     "pdf compression tutorial",
     "browser pdf editor safety",
+    "local first web app blog",
   ],
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "Blog & Guides — PDF Editing, Media Security & Local Web Tech",
+    description:
+      "Step-by-step tutorials and security insights on editing, compressing, and managing PDFs locally in your browser.",
+    url: `${siteConfig.url}/blog`,
+    siteName: siteConfig.name,
+    images: ["/opengraph-image"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog & Guides — PDF Editing, Media Security & Local Web Tech",
+    description:
+      "Step-by-step tutorials and security insights on editing, compressing, and managing PDFs locally in your browser.",
+    images: ["/opengraph-image"],
+  },
 };
 
 const POSTS = [
@@ -42,8 +65,22 @@ const POSTS = [
 ];
 
 export default function BlogPage() {
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", item: "/" },
+    { name: "Blog", item: "/blog" },
+  ]);
+
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "CraftKit Pro Blog",
+    "url": `${siteConfig.url}/blog`,
+    "description": "Tutorials, guides, and technical breakdowns of client-side document processing.",
+  };
+
   return (
     <div className="bg-[#0a0a0a] min-h-screen py-20 relative overflow-hidden">
+      <JsonLd data={[breadcrumbSchema, blogSchema]} />
       {/* Background Gradients */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-[#0a84ff]/5 blur-[100px]" />
@@ -78,16 +115,19 @@ export default function BlogPage() {
                 <span className="text-[11px] text-[#8e8e93]">{post.readTime}</span>
               </div>
               <h2 className="text-base font-bold text-white mb-3 leading-snug group-hover:text-[#0a84ff] transition-colors line-clamp-2">
-                {post.title}
+                <Link href={`/blog/${post.slug}`}>{post.title}</Link>
               </h2>
               <p className="text-[12px] text-[#8e8e93] leading-relaxed mb-6 flex-1 line-clamp-4">
                 {post.excerpt}
               </p>
               <div className="border-t border-[#2a2a2d] pt-4 mt-auto flex items-center justify-between">
                 <span className="text-[11px] text-[#48484a]">{post.date}</span>
-                <span className="text-[11px] font-bold text-[#0a84ff] hover:underline flex items-center gap-1">
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="text-[11px] font-bold text-[#0a84ff] hover:underline flex items-center gap-1"
+                >
                   Read Guide <span>→</span>
-                </span>
+                </Link>
               </div>
             </article>
           ))}

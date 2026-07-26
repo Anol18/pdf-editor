@@ -1,20 +1,58 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/config/site";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getBreadcrumbSchema } from "@/lib/seo-schemas";
 
 export const metadata: Metadata = {
-  title: "About Me — The Story Behind PDFCraft Pro",
+  title: "About Us — The Mission Behind CraftKit Pro",
   description:
-    "Learn about the mission, architecture, and technology behind PDFCraft Pro. Designed to build the world's most secure and fully private PDF suite.",
+    "Learn about the mission, architecture, and client-side technology behind CraftKit Pro. Designed to build the world's most secure and private PDF & media suite.",
   keywords: [
-    "about pdfcraft",
+    "about craftkit pro",
     "offline first tools creator",
     "pdf editor technology stack",
     "private web development",
+    "privacy first media tools",
   ],
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About Us — The Mission Behind CraftKit Pro",
+    description:
+      "Learn about the mission, architecture, and client-side technology behind CraftKit Pro. Designed to build the world's most secure and private PDF & media suite.",
+    url: `${siteConfig.url}/about`,
+    siteName: siteConfig.name,
+    images: ["/opengraph-image"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us — The Mission Behind CraftKit Pro",
+    description:
+      "Learn about the mission, architecture, and client-side technology behind CraftKit Pro.",
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function AboutPage() {
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", item: "/" },
+    { name: "About", item: "/about" },
+  ]);
+
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About CraftKit Pro",
+    "url": `${siteConfig.url}/about`,
+    "description":
+      "CraftKit Pro is an open, client-side developer toolkit designed to process media assets locally with total privacy.",
+  };
+
   return (
     <div className="bg-[#0a0a0a] min-h-screen py-20 relative overflow-hidden">
+      <JsonLd data={[breadcrumbSchema, aboutSchema]} />
       {/* Background Gradients */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[35%] h-[35%] rounded-full bg-[#00c6ff]/5 blur-[90px]" />

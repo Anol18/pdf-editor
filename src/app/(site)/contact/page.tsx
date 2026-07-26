@@ -1,21 +1,58 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
+import { siteConfig } from "@/config/site";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getBreadcrumbSchema } from "@/lib/seo-schemas";
 
 export const metadata: Metadata = {
-  title: "Contact Us — Get in Touch with PDFCraft Pro Support",
+  title: "Contact Support & Feedback — CraftKit Pro",
   description:
-    "Have feature requests, questions, or custom inquiries? Reach out to us. We would love to hear from you.",
+    "Have feature requests, questions, or custom inquiries? Reach out to CraftKit Pro support team. We would love to hear from you.",
   keywords: [
-    "contact pdfcraft",
+    "contact craftkit pro",
     "pdf editor support",
     "feature requests",
     "pdf tool feedback",
+    "contact media toolkit creator",
   ],
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "Contact Support & Feedback — CraftKit Pro",
+    description:
+      "Have feature requests, questions, or custom inquiries? Reach out to CraftKit Pro support team.",
+    url: `${siteConfig.url}/contact`,
+    siteName: siteConfig.name,
+    images: ["/opengraph-image"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Support & Feedback — CraftKit Pro",
+    description:
+      "Have feature requests, questions, or custom inquiries? Reach out to CraftKit Pro support team.",
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function ContactPage() {
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: "Home", item: "/" },
+    { name: "Contact", item: "/contact" },
+  ]);
+
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact CraftKit Pro",
+    "url": `${siteConfig.url}/contact`,
+    "description": "Send feedback, report issues, or suggest new features for CraftKit Pro.",
+  };
+
   return (
     <div className="bg-[#0a0a0a] min-h-screen py-20 relative overflow-hidden">
+      <JsonLd data={[breadcrumbSchema, contactSchema]} />
       {/* Background Gradients */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-[#0a84ff]/5 blur-[100px]" />
